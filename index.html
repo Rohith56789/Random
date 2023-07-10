@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+     </script>
+   <link rel="icon" type="image/x-icon" href="favicon.ico">
+       <title>Treasure</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm d-flex container-fluid bg-success">
+        <div class="container-fluid d-flex ">
+              <!-- <ul class="nav justify-content-center"> -->
+            <a class="nav-link" href="#">CALCULATING GOLD PRICE</a>
+        <!-- </ul>    -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        </nav><br>
+<div class="card d-flex">
+       
+  <!-- 46 to 56 ok -->
+  <!-- <div class="float-container">
+
+    <div class="float-child gap-3">
+      <div class="green">Float Column 1</div>
+    </div>
+   
+    <div class="float-child">
+      <div class="blue">Float Column 2</div>
+    </div>
+   
+  </div> -->
+
+<!-- 58 to 59  working perfectly -->
+  <div class="flex-container">
+
+    <div class="flex-child magenta">
+      <form autocomplete="off" class="form1">
+        <h3 class="form1">Tool - 1: Price of Gold</h3>
+
+        <label class="col-md-3">Choose Carat:</label>
+          <select class="col-md-4" id="cartlist" onchange="showLoader('10%'); priceCost();clearFun();hideLoader();">
+          <option>Select Carats</option>
+          <option value="24">24</option>
+          <option value="22">22</option>
+          <option value="20">20</option>
+          <option value="18">18</option>
+        </select>
+        <br>
+
+        <label class="col-md-3">Price of 24 Carat:</label>
+        <input class="col-md-4" type="text" id="pricein" onkeyup="priceCost()">
+        <br>
+
+        <label class="col-md-3">Price of Gold:</label>
+        <input type="text" id="result" class="col-md-4">
+        <br>
+        <br>
+      </form>
+       
+      <form autocomplete="off" class="form2" >
+        <h3>Tool - 2: Price of Gold</h3>
+     
+        <label class="col-md-3">Choose Carat:</label>
+        <select class="col-md-4" id="cartlist2" onchange="showLoader('10%'); priceCost2();clearFun();hideLoader();">
+          <option>Select Carats</option>
+          <option value="24" class="24carat" >24</option>
+          <option value="22" class="22carat" >22</option>
+          <option value="20" class="20carat" >20</option>
+          <option value="18" class="carat" >18</option>
+        </select>
+        <br>
+     
+        <label class="col-md-3">Price of Gold:</label>
+        <input class="col-md-4" type="text" id="pricein2" >
+        <br>
+     
+        <label class="col-md-3">Weight in Grams:</label>
+        <input type="text" id="wig" class="col-md-4">
+     
+        <br>
+        <label class="col-md-3">Making Charges:</label>
+        <input type="text" id="mc" class="col-md-4">
+       
+        <br>
+        <label class="col-md-3">GST Charges:</label>
+        <input type="text" id="gst" class="col-md-4"  onkeyup="priceCost2()">
+     
+        <br>
+        <label class="col-md-3">Final Price:</label>
+        <input type="text" id="fp" class="col-md-4">
+        <br>
+        <p> Price of(22ct or 18ct)gold * (Weight in grams) + Making charges + GST on (Price of jewellery)</p>
+        <br>
+      </form>
+      <form autocomplete= "off" class="form3">
+        <h3>Tool - 3:Formula of the old Gold Rate</h3>
+     
+        <label class="col-md-3">Choose Carat:</label>
+        <select class="col-md-4" id="cartlist3" onchange="showLoader('10%'); priceCost3();clearFun();hideLoader();">
+          <option>Select Carats</option>
+          <option value="24">24</option>
+          <option value="22">22</option>
+          <option value="20">20</option>
+          <option value="18">18</option>
+        </select>
+        <br>
+     
+        <label class="col-md-3">Weight of Gold:</label>
+        <input class="col-md-4" type="text" id="weight3" >
+        <br>
+     
+        <label class="col-md-3">Rate of Gold Today:</label>
+        <input type="text" id="rgp" class="col-md-4"  onkeyup="priceCost3()">
+     
+        <br>
+        <label class="col-md-3">Final Price:</label>
+        <input type="text" id="fPrice" class="col-md-4">
+         <br>    
+        <p>(Weight of Gold * Purity of Gold * Rate of Gold today)/24 Carats:</p>
+        <br>
+       
+      </form>
+      <form autocomplete="off" class="form4">
+        <h3>Tool - 4: Formula of the Old Gold Rate(Percentage Purity)</h3>
+     
+        <label class="col-md-3">Purity of Gold%:</label>
+        <select class="col-md-4" id="cartlist4" onchange="showLoader('10%'); priceCost4();clearFun();hideLoader();">
+          <option>Select Carats</option>
+          <option value="24">24</option>
+          <option value="22">22</option>
+          <option value="20">20</option>
+          <option value="18">18</option>
+        </select>
+        <br>
+     
+        <label class="col-md-3">Weight of Gold:</label>
+        <input class="col-md-4" type="text" id="pricein4" >
+        <br>
+     
+        <label class="col-md-3">Rate of Gold Today:</label>
+        <input type="text" id="rgt" class="col-md-4" onkeyup="priceCost4()">
+     
+        <br>
+        <label class="col-md-3">Final Price:</label>
+        <input type="text" id="Price4" class="col-md-4">
+                 
+        <br>
+        <p>(Weight of Gold * Purity of Gold * Rate of Gold today)/100:</p>
+        <br>
+      </form>
+      <hr class="hr1">
+      <h2>Product Estimate </h2>
+      <ul>
+      <input
+          class="col-md-2 mr-3"
+          type="text"
+          id="gross"
+          name="productNo"
+          placeholder="Enter product Number">
+     
+      <select class="col-md-2 mr-3" id="purity" onchange="">
+        <option value="" aria-required="false">Select Purity</option>
+        <option value="24">24</option>
+        <option value="22">22</option>
+        <option value="20">20</option>
+        <option value="18">18</option>
+      </select>
+      <input
+        class="col-md-2 mr-3 mt-2"
+        type="text"
+        id="gw"
+        placeholder="Gross Weight"
+        onkeyup="amountFun()">
+      <input
+          class="col-md-2 mr-3 mt-2"
+          type="text"
+          id="grg"
+          placeholder="Gold Rate Per Gram"
+          onkeyup="amountFun()" >
+      <input
+          class="col-md-2 mr-3 mt-2"
+          type="text"
+          id="amount"
+          placeholder="Amount" >
+         
+       <button
+       type="button"
+       class="btn btn btn-success"
+       onclick="showLoader('80%');  addFunction(); hideLoader();tblButton()" >
+          Add
+        </button>
+     
+      <div id="loader" style="display:none"></div>
+      <table id="goldtable">
+        <tr id="ro"></tr>
+      </table>
+      <div class="text-center mt-4">
+        <button type="button" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+
+     
+    <div class="flex-child yellow">
+    <div class="nav d-flex">
+      <!-- <a href="javascript:void(0)" onclick="showOrHideCategory('Jewelery') ,method()" type="html/css" rel="stylesheet" > Gold Jewelery</a> -->
+      <a href="javascript:void(0)" onclick="showOrHideCategory('jewelery')" type="html/css" rel="stylesheet" > Gold Jewelery</a>
+      <a href="#" data-taggle="collapse" onclick="showOrHideCategory('necklace') , method()" type="html/css" rel="stylesheet"> Necklace</a>
+      <a href="#"  type="html/css" onclick="showOrHideCategory('Jhumkas') " rel="stylesheet" > Jhumkas</a>
+      <a href="#"  type="html/css" onclick="showOrHideCategory('Bangles') " rel="stylesheet" > Bangles</a>
+    </div>
+    <div class="card">
+
+      <p class="necklace">
+        <img src="1.jpg" alt="jewelery" id="jewel">Large Variety of Necklaces are availbale in India
+      </p>
+
+      <p class="jhumkas">
+        <img src="2.jpg" alt="jewelery" id="jewel"> Women's favourite jewellery is mostly Jhumkas
+      </p>
+
+      <p class="bangles">
+        <img src="3.jpg" alt="jewelery" id="jewel">Bangles are compulsory accessories to women
+      </p>
+
+      <p class="necklace">
+        <img src="4.jpg" alt="jewelery" id="jewel" class="Necklace">Necklaces are costly affair but it is very beautiful
+      </p>
+
+      <p class="bangles">
+        <img src="5.jpg" alt="jewelery" id="jewel">Women and even children can handle Bangles easily
+      </p>
+
+      <p class="jhumkas">
+        <img src="6.jpg" alt="jewelery" id="jewel">There are wide range of varieties of Jhumkas
+      </p>
+
+      <p class="bangles">
+        <img src="7.jpg" alt="jewelery" id="jewel">Bangles are compulsory accessories to women
+      </p>
+      <br>
+      <hr class="hr2">
+      <ul class="top">
+        <div class="Loader">
+          <form id="myFrom" action="/submit" method="post">
+            <label class="col-md-2" for="selc1">Group By:</label>
+            <select class="col-md-2" name="selc1" id="selc1" onchange="showDp(this.id,'selc2');resetFunDp()">
+              <option value="groupby" id="sgb">Select Groupby</option>
+                <option value="gold">Gold</option>
+              <option value="silver">Silver</option>
+              <option value="diamond">Diamond</option>
+              <option value="platinum">Platinum</option>
+            </select><br>
+            <label class="col-md-2" for="selc2">Category:</label>
+            <select class="col-md-2" name="selc2" id="selc2" onchange="showDp2(this.id,'selc3');resetFunDp2()">
+                          <option value="ring"></option>          
+            </select><br>
+            <label class="col-md-2">Concept:</label>
+            <select class="col-md-2" name="selc3" id="selc3">            
+            </select><br>
+            <div class="text-left st-2">
+            <input type="button" value="Search" class="btn btn-success" onclick="dpButton()">
+          </div>  </form>
+          </div>
+    </div>
+ 
+  </div>
+</div>
+</div>
+       
+<!-- </div>
+<div class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div> -->
+
+ 
+  <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
